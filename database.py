@@ -83,8 +83,8 @@ class VotingTopics(object):
     def _load_json_voting(self, json_voting):
 
         voting_dict = json.loads(json_voting)
-        # print voting_dict
-        # print voting_dict.keys()
+        # print(voting_dict)
+        # print(voting_dict.keys())
 
         eval_voting_dict = {u"options": {}}
         for key in voting_dict:
@@ -108,13 +108,13 @@ class VotingTopics(object):
             db[self.TABLE].upsert(dict_params, [self.KEY_FIELD])
 
     def __delitem__(self, voting_title):
-        # print "actually deleting", voting_title
+        # print("actually deleting", voting_title)
         dict_params = {self.KEY_FIELD: voting_title}
 
         with self.db as db:
             db[self.TABLE].delete(**dict_params)
 
-        print voting_title, "deleted!"
+        print(voting_title, "deleted!")
 
     def __contains__(self, voting_title):
 

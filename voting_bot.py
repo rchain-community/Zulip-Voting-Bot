@@ -44,7 +44,7 @@ class VotingBot():
     def get_all_zulip_streams(self):
         ''' Call Zulip API to get a list of all streams
         '''
-        response = requests.get('https://api.zulip.com/v1/streams',
+        response = requests.get(os.environ['HOST']+'/api/v1/streams', verify=False,
                                 auth=(self.username, self.api_key))
 
         if response.status_code == 200:
@@ -67,7 +67,7 @@ class VotingBot():
         '''
 
         # decode if necessary
-        if type(msg["content"]) == unicode:
+        if type(msg["content"]) == str:
             content = msg["content"]
         else:
             content = msg["content"].decode("utf-8", "replace")
@@ -236,12 +236,12 @@ class VotingBot():
                         title.lower(), msg["sender_email"])
 
                 else:
-                    print "regex did not match"
+                    print("regex did not match")
                     self.send_voting_help(msg)
             else:
                 self.post_error(msg)
         else:
-            print "title not in keys" + title
+            print( "title not in keys" + title)
             pprint.pprint(self.voting_topics)
             self.send_voting_help(msg)
 
@@ -266,7 +266,7 @@ class VotingBot():
     def new_voting_topic(self, msg, title, options):
         '''Create a new voting topic.'''
 
-        print "Voting topic", title, "already?:", title.lower() in self.voting_topics
+        print("Voting topic", title, "already?:", title.lower() in self.voting_topics)
 
         if title.lower() in self.voting_topics:
             self.send_repeated_voting(msg)
@@ -323,7 +323,7 @@ class VotingBot():
         '''Add a vote to an existing voting topic.'''
 
         vote = self.voting_topics[title]
-        print vote
+        print(vote)
 
         if option_number in vote["options"].keys():
 
@@ -346,7 +346,7 @@ class VotingBot():
                                                         option_number,
                                                         True, title)
         else:
-            # print "option in range", type(option_number),
+            # print "option in range", type(option_number),)
             # vote["options"].keys()
             msg["content"] = " ".join(["That option is not in the range of the",
                                        "voting options. Here are your options:",
@@ -361,7 +361,7 @@ class VotingBot():
         msg["type"] = "private"
         self.send_message(msg)
 
-        print vote
+        print(vote)
         self.voting_topics[title.strip()] = vote
 
     def _get_add_vote_msg(self, msg, vote, option_number, changed_vote, title):
@@ -419,14 +419,14 @@ class VotingBot():
         return results
 
     def delete_voting_topic(self, voting_title):
-        print "deleting", voting_title
+        print("deleting", voting_title)
 
         dict_params = {self.voting_topics.KEY_FIELD: unicode(voting_title)}
 
         with self.voting_topics.db as db:
             db[self.voting_topics.TABLE].delete(**dict_params)
 
-        print voting_title, "deleted from voting_bot.py!"
+        print( voting_title, "deleted from voting_bot.py!")
 
     def main(self):
         ''' Blocking call that runs forever. Calls self.respond() on every
@@ -437,7 +437,7 @@ class VotingBot():
 
 
 def main():
-    zulip_username = 'voting-bot@students.hackerschool.com'
+    zulip_username = os.environ['ZULIP_USERNAME']
     zulip_api_key = os.environ['ZULIP_API_KEY']
     key_word = 'VotingBot'
 
