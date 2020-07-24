@@ -90,3 +90,21 @@ Now VotingBot supports one liners! In any other command you can replace Shift-En
 * VotingBot Karaoke results
 * VotingBot help
 
+## setup
+```
+pip install database parsley
+postgress database
+ create table voting_topics ( voting_title varchar (100) primary key, voting_dict varchar (256) );
+```
+## Running
+ ```
+export HOST=https://rchat71.madmode.com/
+export ZULIP_API_KEY=xxxxxxxxxxxxxxxxxxxxx
+export DB_NAME=voting
+export DB_USER=voting
+export DB_PASSWORD=xxxxxxxxxxxxxxxxx
+export DB_HOST=localhost
+export DB_PORT=5432
+export ZULIP_USERNAME='Voting-bot@rchat71.madmode.com'
+python voting_bot.py
+```
