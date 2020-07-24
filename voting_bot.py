@@ -277,7 +277,7 @@ class VotingBot():
 
             for x in range(len(options)):
                 options_dict[x] = [options[x], 0]
-                msg["content"] += "\n " + unicode(x) + ". " + options[x]
+                msg["content"] += "\n " + str(x) + ". " + options[x]
 
             self.voting_topics[title.lower()] = {"title": title,
                                                  "options": options_dict,
@@ -303,7 +303,7 @@ class VotingBot():
 
                 msg["content"] = "There is a new option in topic: " + title
                 for x in range(len(options)):
-                    msg["content"] += "\n " + unicode(x) + ". " + options[x][0]
+                    msg["content"] += "\n " + x + ". " + options[x][0]
 
                 self.send_message(msg)
 
@@ -353,7 +353,7 @@ class VotingBot():
                                        " \n"])
             options_list = []
             for i in xrange(len(vote["options"])):
-                new_option = unicode(i) + ". " + vote["options"][i][0]
+                new_option = i + ". " + vote["options"][i][0]
                 options_list.append(new_option)
 
             msg["content"] += "\n".join(options_list)
@@ -414,14 +414,14 @@ class VotingBot():
 
         for option in vote["options"].values():
             results += "\n{0} has {1} votes.".format(
-                option[0], unicode(option[1]))
+                option[0], option[1])
 
         return results
 
     def delete_voting_topic(self, voting_title):
         print("deleting", voting_title)
 
-        dict_params = {self.voting_topics.KEY_FIELD: unicode(voting_title)}
+        dict_params = {self.voting_topics.KEY_FIELD: voting_title}
 
         with self.voting_topics.db as db:
             db[self.voting_topics.TABLE].delete(**dict_params)
