@@ -97,6 +97,7 @@ postgress database
  create table voting_topics ( voting_title varchar (100) primary key, voting_dict varchar (256) );
 ```
 ## Running
+.env file
  ```
 export HOST=https://rchat71.madmode.com/
 export ZULIP_API_KEY=xxxxxxxxxxxxxxxxxxxxx
