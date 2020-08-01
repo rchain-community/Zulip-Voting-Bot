@@ -173,8 +173,9 @@ class VotingBot():
                     user_content[i:]
 
             else:
-                raise Exception("one liner with no colon and no fix!" + user_content)
-
+                # raise Exception("one liner with no colon and no fix!" + user_content)
+                #send_message("one liner with no colon and no fix!" + user_content)
+                pass
         # PEG for one liner
         grammar = parsley.makeGrammar("""
             not_colon = anything:x ?(':' not in x)
