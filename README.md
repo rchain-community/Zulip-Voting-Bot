@@ -115,3 +115,8 @@ export DB_PORT=5432
 export ZULIP_USERNAME='Voting-bot@zulip.rchain-dev.tk'
 python voting_bot.py
 ```
+## ~/.tuliprc
+```
+[api]
+site=https://zulip.rchain-dev.tk
+```
