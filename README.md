@@ -9,34 +9,34 @@ Demo examples for Zulip VotingBot
 **To open a vote, post in the public stream:**
 
 ```
-VotingBot \<Poll Title\>
-\<Option 1>
-\<Option 2>
-\<...Option N>
+VotingBot <Poll Title>
+<Option 1>
+<Option 2>
+<...Option N>
 *(note: 1,2,...N are the indices)*
 ```
 **To cast a vote, in a public message:**
 ```
-VotingBot \<Poll Title>
-\<Option Index>
+VotingBot <Poll Title>
+<Option Index>
 ```
 **To cast a vote, in a private message:**
 ```
-\<Poll Title>
-\<Option Index>
+<Poll Title>
+<Option Index>
 *VotingBot then confirms you have voted, repeating your choice*
 ```
 **To add a new voting option (only in a public message)
 **
 ```
-VotingBot \<Poll Title>
-Add: \<Option N+1>
+VotingBot <Poll Title>
+Add: <Option N+1>
 ```
 *VotingBot will resend all voting options, including latest addition*
 
 **To end the vote and get results (only in a public message)**
 ```
-VotingBot \<Poll Title>
+VotingBot <Poll Title>
 results
 ```
 *VotingBot publish the results of the voting*
