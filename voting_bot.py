@@ -304,7 +304,7 @@ class VotingBot():
 
                 msg["content"] = "There is a new option in topic: " + title
                 for x in range(len(options)):
-                    msg["content"] += "\n " + x + ". " + options[x][0]
+                    msg["content"] += "\n " + str(x) + ". " + options[x][0]
 
                 self.send_message(msg)
 
